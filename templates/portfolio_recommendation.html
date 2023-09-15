@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stock Investment Allocation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bg_style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h2>Portfolio Recommendation</h2>
+
+    <div class="container1">
+        <form action="/portfolio_recommendation" method="post">
+            <label for="investment">Amount to be invested:</label>
+            <input type="number" id="investment" name="investment" required>
+            <input type="submit" value="Allocate" class="button">
+        </form>
+
+       
+
+        <h3>Allocation Pie Chart:</h3>
+        <canvas id="allocationChart" width="30" height="10"></canvas>
+
+        <h5>Portfolio Performance:</h5>
+    Annualized Returns (%): {{ "%.2f"|format(annRet) }}
+    <br>
+    Annualized Risk (%): {{ "%.2f"|format(annRisk) }}
+
+    </div>
+
+    <a href="/" class="button">Back to Home</a>
+
+    <script>
+        
+        const labels = [{% for stock, amount in allocated_amounts.items() %}"{{ stock }}",{% endfor %}];
+        const data = [{% for stock, amount in allocated_amounts.items() %}{{ amount }},{% endfor %}];
+
+        const config = {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Stock Allocation',
+                    data: data,
+                    backgroundColor: ['#E57373', '#81C784','#64B5F6','#FFD54F', 
+    '#A1887F', 
+    '#7986CB', 
+    '#4DB6AC', 
+    '#FF8A65', 
+    '#9575CD', 
+    '#F06292', 
+    '#4FC3F7', 
+    '#AED581', 
+    '#FFA726', 
+    '#BA68C8', 
+    '#90A4AE', 
+    '#FFEB3B', 
+    '#C5E1A5', 
+    '#FF6F00', 
+    '#D32F2F'  ],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,  
+                aspectRatio: 1.5
+            }
+        };
+
+        const ctx = document.getElementById('allocationChart').getContext('2d');
+        const allocationChart = new Chart(ctx, config);
+    </script>
+</body>
+
+</html>

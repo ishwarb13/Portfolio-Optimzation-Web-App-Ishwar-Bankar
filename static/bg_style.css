@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    font-size: x-large;
+    background-image: url('home_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; 
+    margin-top: 20px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+
+.container1 {
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; 
+    height: 80%;
+    max-width: 600px; 
+    margin: 20px auto; 
+    margin-top: 0px;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: large;
+
+    
+}
+
+.button {
+    background-color: rgb(0, 115, 255);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 30px; 
+}
+.button:hover {
+    
+    background-color: rgb(123, 159, 231);
+}
+
+
+/* select, input[type="submit"] {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+} */
+
+canvas {
+    margin-top: 20px;
+}
+
+select {
+    padding: 10px 20px;
+    font-size: larger;
+    border-radius: 25px;
+    border: none; 
+    appearance: none; 
+    background-color: rgba(255, 255, 255, 0.7); 
+    margin-bottom: 20px; 
+    cursor: pointer;
+    outline: none; 
+    margin-bottom: 0px;
+}
+
+
+input[type="submit"].button {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 25px;
+    background-color: rgb(0, 115, 255);
+    border: none;
+    color: aliceblue;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: larger;
+    outline: none; 
+    margin-top: 5px;
+}
+
+
+input[type="submit"].button:hover {
+    background-color: rgb(123, 159, 231);
+}
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stock Price Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bg_style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #stockChart {
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Asset Price Prediction</h1>
+
+    <div class="container">
+        <form method="post">
+            Select Asset: <select name="stock_select" required>
+                {% for stock in stocks %}
+                <option value="{{ stock }}">{{ stock }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Predict" class="button">
+        </form>
+
+        <canvas id="stockChart" width="30" height="10"></canvas>
+    </div>
+
+    <a href="/" class="button">Back to Home</a>
+
+    <script>
+        {% if prediction and actual_values %}
+        var ctx = document.getElementById('stockChart').getContext('2d');
+        var stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [...Array({{ prediction|length }}).keys()],
+                datasets: [{
+                        label: 'Actual Values',
+                        data: {{ actual_values|tojson }},
+                        borderColor: 'blue',
+                        backgroundColor: 'transparent',
+                        fill: false,
+                    },
+                    {
+                        label: 'Predicted Values',
+                        data: {{ prediction|tojson }},
+                        borderColor: 'orange',
+                        backgroundColor: 'transparent',
+                        fill: false,
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Days'
+                        },
+                        ticks: {
+                            color: 'black',
+                            font: {
+                                size: 18
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)',
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Stock Price'
+                        },
+                        ticks: {
+                            color: 'black',
+                            font: {
+                                size: 18
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)',
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black',
+                            font: {
+                                size: 18
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        {% endif %}
+    </script>
+</body>
+
+</html>
